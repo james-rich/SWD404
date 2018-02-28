@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class Main {
 
     public static void main(String[] args)
@@ -74,5 +76,8 @@ public class Main {
         System.out.println("Average age is : \t\t\t\t"      + company.getAvgAge(68));
         System.out.println("Age range is : \t\t\t\t\t"                + company.getAgeRange(68));
         System.out.println("Total fare : \t\t\t\t\t£"                 + company.getTotalFare(68));
+
+        System.out.println("Total fare : \t\t\t\t\t£"                 + company.getTotalFare(68));
+
     }
 }
