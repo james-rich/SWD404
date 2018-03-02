@@ -25,10 +25,10 @@ public class Carpark {
         return false;
     }
 
-    public boolean removeCar(Car car) {
+    public boolean removeCar(String car) {
         for (int i = 0; i < cars.length; i++) {
             if (cars[i] != null) {
-                if (cars[i].getNumberPlate().equals(car.getNumberPlate())) {
+                if (cars[i].getNumberPlate().equals(car)) {
                     cars[i] = null;
                     return true;
                 }
