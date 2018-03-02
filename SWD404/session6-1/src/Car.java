@@ -35,8 +35,4 @@ public class Car {
         return numberPlate;
     }
 
-    @Override
-    public String toString() {
-        return numberPlate;
-    }
 }

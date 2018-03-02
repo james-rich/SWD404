@@ -1,9 +1,6 @@
-import javafx.scene.input.KeyCode;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.security.Key;
 
 public class MainScreen extends JFrame implements ActionListener {
 
@@ -17,6 +14,14 @@ public class MainScreen extends JFrame implements ActionListener {
     private JTextField txtColour;
     private JTextField txtMake;
     private JTextField txtModel;
+
+    private JTextArea txtCarList;
+
+    private JPanel pnlPane[];
+    private JLabel lblCaparkReg[];
+    private JLabel lblCarpakColour[];
+    private JLabel lblCarparkMake[];
+    private JLabel lblCarparkModel[];
 
     private JButton btnAdd;
     private JButton btnRemove;
@@ -52,6 +57,28 @@ public class MainScreen extends JFrame implements ActionListener {
         txtColour   = new JTextField();
         txtMake     = new JTextField();
         txtModel    = new JTextField();
+        txtCarList  = new JTextArea(20, 15);
+
+        pnlPane = new JPanel[15];
+        lblCaparkReg = new JLabel[15];
+        lblCarpakColour = new JLabel[15];
+        lblCarparkMake = new JLabel[15];
+        lblCarparkModel = new JLabel[15];
+        for(int i = 0; i < pnlPane.length; i++) {
+            pnlPane[i] = new JPanel();
+            pnlPane[i].setLayout(new BoxLayout(pnlPane[i], BoxLayout.PAGE_AXIS));
+            pnlPane[i].setBorder(BorderFactory.createTitledBorder("Space " + i));
+
+            lblCaparkReg[i] = new JLabel("Space");
+            lblCarpakColour[i] = new JLabel("" + i + "");
+            lblCarparkMake[i] = new JLabel("is");
+            lblCarparkModel[i] = new JLabel("empty.");
+
+            pnlPane[i].add(lblCaparkReg[i]);
+            pnlPane[i].add(lblCarpakColour[i]);
+            pnlPane[i].add(lblCarparkMake[i]);
+            pnlPane[i].add(lblCarparkModel[i]);
+        }
 
         txtReg.addKeyListener(new KeyAdapter() {
             @Override
@@ -174,7 +201,42 @@ public class MainScreen extends JFrame implements ActionListener {
 
         this.add(btnGet, constraints);
 
+        constraints.gridy       = 8;
 
+        this.add(txtCarList, constraints);
+
+        constraints.gridwidth   = 1;
+        constraints.gridheight  = 4;
+
+        for(int i = 0; i < 5; i++){
+            for(int j = 0; j < 3; j++){
+                int tmpSpace = (i * 3) + j;
+                constraints.gridy       = 30 + i * 4;
+                constraints.gridx       = j;
+
+                this.add(pnlPane[tmpSpace], constraints);
+            }
+        }
+    }
+
+    public void buildCarList(){
+        cars = newCarpark.getCars();
+        String carTxtList = "";
+        for(int i = 0; i < cars.length; i++){
+            if(cars[i] != null){
+                carTxtList += cars[i].getNumberPlate() + "\n";
+                lblCaparkReg[i].setText(cars[i].getNumberPlate());
+                lblCarpakColour[i].setText(cars[i].getColour());
+                lblCarparkMake[i].setText(cars[i].getMake());
+                lblCarparkModel[i].setText(cars[i].getModle());
+            }else{
+                lblCaparkReg[i].setText("Space");
+                lblCarpakColour[i].setText("" + i + "");
+                lblCarparkMake[i].setText("is");
+                lblCarparkModel[i].setText("empty");
+            }
+        }
+        txtCarList.setText(carTxtList);
     }
 
     @Override
@@ -196,8 +258,10 @@ public class MainScreen extends JFrame implements ActionListener {
 
             if(newCarpark.addCar(addCar)){
                 lblNumCars.setText("There are " + newCarpark.getNumCars() + " in the carpark.");
+            }else{
+                JOptionPane.showMessageDialog(null, "you cant add the same car twice!");
             }
-
+            buildCarList();
         }
 
         if(ev.getSource().equals(btnRemove)){
@@ -210,6 +274,7 @@ public class MainScreen extends JFrame implements ActionListener {
             newCarpark.removeCar(carReg);
 
             lblNumCars.setText("There are " + newCarpark.getNumCars() + " in the carpark.");
+            buildCarList();
         }
 
         if(ev.getSource().equals(btnGet)){
@@ -226,6 +291,7 @@ public class MainScreen extends JFrame implements ActionListener {
                     }
                 }
             }
+            buildCarList();
         }
     }
 }
