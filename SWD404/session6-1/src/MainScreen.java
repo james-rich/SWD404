@@ -236,18 +236,24 @@ public class MainScreen extends JFrame implements ActionListener {
         for(int i = 0; i < cars.length; i++){
             if(cars[i] != null){
                 carTxtList += cars[i].getNumberPlate() + "\n";
+                lblCaparkReg[i].setForeground(Color.RED);
+                lblCarpakColour[i].setForeground(Color.RED);
+                lblCarparkMake[i].setForeground(Color.RED);
+                lblCarparkModel[i].setForeground(Color.RED);
                 lblCaparkReg[i].setText(cars[i].getNumberPlate());
-                lblCarpakColour[i].setText(cars[i].getColour());
-                lblCarparkMake[i].setText(cars[i].getMake());
-                lblCarparkModel[i].setText(cars[i].getModel());
+                lblCarpakColour[i].setText(cars[i].getColour().length() > 0 ? cars[i].getColour() : "N/A");
+                lblCarparkMake[i].setText(cars[i].getMake().length() > 0 ? cars[i].getMake() : "N/A");
+                lblCarparkModel[i].setText(cars[i].getModel().length() > 0 ? cars[i].getModel() : "N/A");
             }else{
-                lblCaparkReg[i].setText("Space");
-                lblCarpakColour[i].setText("" + i + "");
-                lblCarparkMake[i].setText("is");
-                lblCarparkModel[i].setText("empty");
+                lblCaparkReg[i].setText(" ");
+                lblCarpakColour[i].setText(" ");
+                lblCarparkMake[i].setForeground(Color.GREEN);
+                lblCarparkMake[i].setText("EMPTY");
+                lblCarparkModel[i].setText(" ");
             }
         }
         txtCarList.setText(carTxtList);
+        txtReg.requestFocus();
     }
 
     @Override
