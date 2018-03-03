@@ -59,20 +59,22 @@ public class MainScreen extends JFrame implements ActionListener {
         txtModel    = new JTextField();
         txtCarList  = new JTextArea(20, 15);
 
-        pnlPane = new JPanel[15];
-        lblCaparkReg = new JLabel[15];
+        pnlPane         = new JPanel[15];
+
+        lblCaparkReg    = new JLabel[15];
         lblCarpakColour = new JLabel[15];
-        lblCarparkMake = new JLabel[15];
+        lblCarparkMake  = new JLabel[15];
         lblCarparkModel = new JLabel[15];
+
         for(int i = 0; i < pnlPane.length; i++) {
             pnlPane[i] = new JPanel();
             pnlPane[i].setLayout(new BoxLayout(pnlPane[i], BoxLayout.PAGE_AXIS));
             pnlPane[i].setBorder(BorderFactory.createTitledBorder("Space " + i));
 
-            lblCaparkReg[i] = new JLabel("Space");
-            lblCarpakColour[i] = new JLabel("" + i + "");
-            lblCarparkMake[i] = new JLabel("is");
-            lblCarparkModel[i] = new JLabel("empty.");
+            lblCaparkReg[i]     = new JLabel("Space");
+            lblCarpakColour[i]  = new JLabel("" + i + "");
+            lblCarparkMake[i]   = new JLabel("is");
+            lblCarparkModel[i]  = new JLabel("empty.");
 
             pnlPane[i].add(lblCaparkReg[i]);
             pnlPane[i].add(lblCarpakColour[i]);
@@ -88,6 +90,7 @@ public class MainScreen extends JFrame implements ActionListener {
                 }
             }
         });
+
         txtColour.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
@@ -96,6 +99,7 @@ public class MainScreen extends JFrame implements ActionListener {
                 }
             }
         });
+
         txtMake.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
@@ -104,6 +108,7 @@ public class MainScreen extends JFrame implements ActionListener {
                 }
             }
         });
+
         txtModel.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
@@ -112,7 +117,6 @@ public class MainScreen extends JFrame implements ActionListener {
                 }
             }
         });
-
 
         btnAdd      = new JButton("Add Car");
         btnRemove   = new JButton("Remove Car");
@@ -136,50 +140,56 @@ public class MainScreen extends JFrame implements ActionListener {
 
         constraints.gridy       = 0;
         constraints.gridx       = 1;
+        constraints.gridwidth   = 2;
         constraints.fill        = GridBagConstraints.HORIZONTAL;
 
         this.add(txtReg, constraints);
 
         constraints.gridy       = 1;
         constraints.gridx       = 0;
+        constraints.gridwidth   = 1;
         constraints.fill        = GridBagConstraints.NONE;
 
         this.add(lblColour, constraints);
 
         constraints.gridy       = 1;
         constraints.gridx       = 1;
+        constraints.gridwidth   = 2;
         constraints.fill        = GridBagConstraints.HORIZONTAL;
 
         this.add(txtColour, constraints);
 
         constraints.gridy       = 2;
         constraints.gridx       = 0;
+        constraints.gridwidth   = 1;
         constraints.fill        = GridBagConstraints.NONE;
 
         this.add(lblMake, constraints);
 
         constraints.gridy       = 2;
         constraints.gridx       = 1;
+        constraints.gridwidth   = 2;
         constraints.fill        = GridBagConstraints.HORIZONTAL;
 
         this.add(txtMake, constraints);
 
         constraints.gridy       = 3;
         constraints.gridx       = 0;
+        constraints.gridwidth   = 1;
         constraints.fill        = GridBagConstraints.NONE;
 
         this.add(lblModel, constraints);
 
         constraints.gridy       = 3;
         constraints.gridx       = 1;
+        constraints.gridwidth   = 2;
         constraints.fill        = GridBagConstraints.HORIZONTAL;
 
         this.add(txtModel, constraints);
 
         constraints.gridy       = 4;
         constraints.gridx       = 0;
-        constraints.gridwidth   = 2;
-
+        constraints.gridwidth   = 3;
         this.add(lblNumCars, constraints);
 
         constraints.gridy       = 5;
@@ -194,14 +204,15 @@ public class MainScreen extends JFrame implements ActionListener {
 
         this.add(btnRemove, constraints);
 
-        constraints.gridy       = 6;
-        constraints.gridx       = 0;
-        constraints.gridwidth   = 2;
+        constraints.gridy       = 5;
+        constraints.gridx       = 2;
         constraints.fill        = GridBagConstraints.HORIZONTAL;
 
         this.add(btnGet, constraints);
 
-        constraints.gridy       = 8;
+        constraints.gridy       = 7;
+        constraints.gridx       = 0;
+        constraints.gridwidth   = 3;
 
         this.add(txtCarList, constraints);
 
@@ -228,7 +239,7 @@ public class MainScreen extends JFrame implements ActionListener {
                 lblCaparkReg[i].setText(cars[i].getNumberPlate());
                 lblCarpakColour[i].setText(cars[i].getColour());
                 lblCarparkMake[i].setText(cars[i].getMake());
-                lblCarparkModel[i].setText(cars[i].getModle());
+                lblCarparkModel[i].setText(cars[i].getModel());
             }else{
                 lblCaparkReg[i].setText("Space");
                 lblCarpakColour[i].setText("" + i + "");
@@ -265,7 +276,7 @@ public class MainScreen extends JFrame implements ActionListener {
         }
 
         if(ev.getSource().equals(btnRemove)){
-            String carReg       = txtReg.getText();
+            String carReg = txtReg.getText();
 
             txtReg.setText("");
             txtColour.setText("");
@@ -287,7 +298,7 @@ public class MainScreen extends JFrame implements ActionListener {
                     if(cars[i].getNumberPlate().equals(carReg)) {
                         txtColour.setText(cars[i].getColour());
                         txtMake.setText(cars[i].getMake());
-                        txtModel.setText(cars[i].getModle());
+                        txtModel.setText(cars[i].getModel());
                     }
                 }
             }

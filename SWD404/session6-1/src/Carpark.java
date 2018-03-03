@@ -3,7 +3,7 @@ public class Carpark {
     private int numberOfSpaces;
 
     public Carpark() {
-        this.cars = new Car[15];
+        this.cars           = new Car[15];
         this.numberOfSpaces = 15;
     }
 
@@ -17,7 +17,7 @@ public class Carpark {
 
     public boolean addCar(Car car) {
         boolean isCarInList = false;
-        int firstSpace = -1;
+        int firstSpace      = -1;
         for (int i = 0; i < cars.length; i++) {
             if(cars[i] != null){
                 if(cars[i].getNumberPlate().equals(car.getNumberPlate())){
