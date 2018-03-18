@@ -1,8 +1,11 @@
-public abstract class Vehicles {
-    private String reg;
-    private int weight;
+abstract class Vehicles {
+    protected String reg;
+    protected int weight;
 
-    public Vehicles(String in, int regIn){};
+    public Vehicles(String regIn, int weightIn){
+        this.reg = regIn;
+        this.weight = weightIn;
+    };
 
     public String getReg() {
         return reg;

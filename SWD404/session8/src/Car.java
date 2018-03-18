@@ -6,7 +6,10 @@ public class Car extends Vehicles {
 
     @Override
     public double calculateFees() {
-        int fee = (int) (((this.getWeight() - 1590) / 100) / 10);
-        return fee + 3;
+        double fee = 0;
+        if(this.getWeight() > 1590) {
+            fee = (double) ((this.getWeight() - 1590) / 100) / 10;
+        }
+        return fee + 5.00;
     }
 }

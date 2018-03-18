@@ -1,31 +1,27 @@
 public class Bridge {
-    private Vehicles[] vehicles;
-
-    public Bridge() {
-        this.vehicles = new Vehicles[20];
-    }
+    private Vehicles[] vehicles = new Vehicles[20];
 
     public int calcTotalWeight(){
         int totalWeight = 0;
         for(int i = 0; i < vehicles.length; i++){
-            totalWeight += vehicles[i].getWeight();
+            if(vehicles[i] != null){
+                System.out.println(vehicles[i].getReg());
+                System.out.println(vehicles[i].getWeight());
+                totalWeight += vehicles[i].getWeight();
+            }
         }
         return totalWeight;
     }
 
-    public String addVehicles(Vehicles vehiclesIn){
-        for(int i = 0; i < vehicles.length; i++){
-            if(vehicles[i] == null){
-                if((calcTotalWeight() + vehiclesIn.getWeight()) < 30000){
-                    vehicles[i] = vehiclesIn;
-                    return "Added";
-                }else{
-                    return "Bridge weight cap!";
-                }
+    public double addVehicles(Vehicles vehiclesIn){
+        for(int i = 0; i < vehicles.length; i++) {
+            if(vehicles[i] == null) {
+                vehicles[i] = vehiclesIn;
+                return vehicles[i].calculateFees();
+
             }
-            return "Too many cars!";
         }
-        return "Error!";
+        return 0;
     }
 
     public boolean removeVehicles(String regIn){
