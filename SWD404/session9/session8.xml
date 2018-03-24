@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="session8" default="all">
+  
+  
+  <property file="session8.properties"/>
+  <!-- Uncomment the following property if no tests compilation is needed -->
+  <!-- 
+  <property name="skip.tests" value="true"/>
+   -->
+  
+  <!-- Compiler options -->
+  
+  <property name="compiler.debug" value="on"/>
+  <property name="compiler.generate.no.warnings" value="off"/>
+  <property name="compiler.args" value=""/>
+  <property name="compiler.max.memory" value="700m"/>
+  <patternset id="ignored.files">
+    <exclude name="**/*.hprof/**"/>
+    <exclude name="**/*.pyc/**"/>
+    <exclude name="**/*.pyo/**"/>
+    <exclude name="**/*.rbc/**"/>
+    <exclude name="**/*.yarb/**"/>
+    <exclude name="**/*~/**"/>
+    <exclude name="**/.DS_Store/**"/>
+    <exclude name="**/.git/**"/>
+    <exclude name="**/.hg/**"/>
+    <exclude name="**/.svn/**"/>
+    <exclude name="**/CVS/**"/>
+    <exclude name="**/__pycache__/**"/>
+    <exclude name="**/_svn/**"/>
+    <exclude name="**/vssver.scc/**"/>
+    <exclude name="**/vssver2.scc/**"/>
+  </patternset>
+  <patternset id="library.patterns">
+    <include name="*.egg"/>
+    <include name="*.jar"/>
+    <include name="*.ear"/>
+    <include name="*.swc"/>
+    <include name="*.war"/>
+    <include name="*.zip"/>
+    <include name="*.ane"/>
+  </patternset>
+  <patternset id="compiler.resources">
+    <exclude name="**/?*.java"/>
+    <exclude name="**/?*.form"/>
+    <exclude name="**/?*.class"/>
+    <exclude name="**/?*.groovy"/>
+    <exclude name="**/?*.scala"/>
+    <exclude name="**/?*.flex"/>
+    <exclude name="**/?*.kt"/>
+    <exclude name="**/?*.clj"/>
+    <exclude name="**/?*.aj"/>
+  </patternset>
+  
+  <!-- JDK definitions -->
+  
+  <property name="jdk.bin.1.8" value="${jdk.home.1.8}/bin"/>
+  <path id="jdk.classpath.1.8">
+    <fileset dir="${jdk.home.1.8}">
+      <include name="../default-runtime/jre/lib/charsets.jar"/>
+      <include name="../default-runtime/jre/lib/ext/cldrdata.jar"/>
+      <include name="../default-runtime/jre/lib/ext/dnsns.jar"/>
+      <include name="../default-runtime/jre/lib/ext/jaccess.jar"/>
+      <include name="../default-runtime/jre/lib/ext/localedata.jar"/>
+      <include name="../default-runtime/jre/lib/ext/nashorn.jar"/>
+      <include name="../default-runtime/jre/lib/ext/sunec.jar"/>
+      <include name="../default-runtime/jre/lib/ext/sunjce_provider.jar"/>
+      <include name="../default-runtime/jre/lib/ext/sunpkcs11.jar"/>
+      <include name="../default-runtime/jre/lib/ext/zipfs.jar"/>
+      <include name="../default-runtime/jre/lib/jce.jar"/>
+      <include name="../default-runtime/jre/lib/jsse.jar"/>
+      <include name="../default-runtime/jre/lib/management-agent.jar"/>
+      <include name="../default-runtime/jre/lib/resources.jar"/>
+      <include name="../default-runtime/jre/lib/rt.jar"/>
+    </fileset>
+  </path>
+  
+  <property name="project.jdk.home" value="${jdk.home.1.8}"/>
+  <property name="project.jdk.bin" value="${jdk.bin.1.8}"/>
+  <property name="project.jdk.classpath" value="jdk.classpath.1.8"/>
+  <!-- Register Custom Compiler Taskdefs -->
+  <property name="javac2.home" value="${idea.home}/lib"/>
+  <path id="javac2.classpath">
+    <pathelement location="${javac2.home}/javac2.jar"/>
+    <pathelement location="${javac2.home}/jdom.jar"/>
+    <pathelement location="${javac2.home}/asm-all.jar"/>
+    <pathelement location="${javac2.home}/jgoodies-forms.jar"/>
+  </path>
+  <target name="register.custom.compilers">
+    <taskdef name="javac2" classname="com.intellij.ant.Javac2" classpathref="javac2.classpath"/>
+    <taskdef name="instrumentIdeaExtensions" classname="com.intellij.ant.InstrumentIdeaExtensions" classpathref="javac2.classpath"/>
+  </target>
+  
+  <!-- Modules -->
+  
+  
+  <!-- Module session8 -->
+  
+  <dirname property="module.session8.basedir" file="${ant.file}"/>
+  
+  
+  <property name="module.jdk.home.session8" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.session8" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.session8" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.session8" value="-encoding UTF-8 -source 1.8 -target 1.8 ${compiler.args}"/>
+  
+  <property name="session8.output.dir" value="${module.session8.basedir}/out/production/session8"/>
+  <property name="session8.testoutput.dir" value="${module.session8.basedir}/out/test/session8"/>
+  
+  <path id="session8.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="session8.module.production.classpath">
+    <path refid="${module.jdk.classpath.session8}"/>
+  </path>
+  
+  <path id="session8.runtime.production.module.classpath">
+    <pathelement location="${session8.output.dir}"/>
+  </path>
+  
+  <path id="session8.module.classpath">
+    <path refid="${module.jdk.classpath.session8}"/>
+    <pathelement location="${session8.output.dir}"/>
+  </path>
+  
+  <path id="session8.runtime.module.classpath">
+    <pathelement location="${session8.testoutput.dir}"/>
+    <pathelement location="${session8.output.dir}"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.session8">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.session8">
+    <patternset refid="excluded.from.module.session8"/>
+  </patternset>
+  
+  <path id="session8.module.sourcepath">
+    <dirset dir="${module.session8.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.session8" depends="compile.module.session8.production,compile.module.session8.tests" description="Compile module session8"/>
+  
+  <target name="compile.module.session8.production" depends="register.custom.compilers" description="Compile module session8; production classes">
+    <mkdir dir="${session8.output.dir}"/>
+    <javac2 destdir="${session8.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.session8}/javac">
+      <compilerarg line="${compiler.args.session8}"/>
+      <bootclasspath refid="session8.module.bootclasspath"/>
+      <classpath refid="session8.module.production.classpath"/>
+      <src refid="session8.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.session8"/>
+    </javac2>
+    
+    <copy todir="${session8.output.dir}">
+      <fileset dir="${module.session8.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.session8.tests" depends="register.custom.compilers,compile.module.session8.production" description="compile module session8; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.session8" description="cleanup module">
+    <delete dir="${session8.output.dir}"/>
+    <delete dir="${session8.testoutput.dir}"/>
+  </target>
+  
+  <target name="init" description="Build initialization">
+    <!-- Perform any build initialization in this target -->
+  </target>
+  
+  <target name="clean" depends="clean.module.session8" description="cleanup all"/>
+  
+  <target name="build.modules" depends="init, clean, compile.module.session8" description="build all modules"/>
+  
+  <target name="all" depends="build.modules" description="build all"/>
+</project>
