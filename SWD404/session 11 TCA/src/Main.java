@@ -12,9 +12,12 @@ public class Main {
         return scanner.nextInt();
     }
 
+
+
     public static void main(String[] args) {
 
-        Company newCompany = new Company();
+        Company company = new Company();
+
 
         int state = 1;
         while(state == 1) {
@@ -53,8 +56,8 @@ public class Main {
                 System.out.print("Number Of Day's the " + dogsName + " Will be staying:");
                 int dogStayInDays = getInt();
                 System.out.println();
-                Dog dog = new Dog(dogsName, ownersName, dogsAge, dogsGender, dogsBreed, dogsNotes);
-                boolean dogAdded = newCompany.addDog(dog, dogStayInDays);
+                Dog dog = new Dog("a", "b", 1, "c", "d", "e");
+                boolean dogAdded = company.addDog(dog, 2);
                 if (dogAdded) {
                     System.out.println("dog added");
                 }
@@ -63,14 +66,14 @@ public class Main {
             if (userInput.equals("B")) {
                 System.out.print("What dog would you like to evict!");
                 int result = getInt();
-                boolean dogRemoved = newCompany.removeDog(result);
+                boolean dogRemoved = company.removeDog(result);
                 System.out.println("Was the dog removed = " + dogRemoved);
             }
 
             if (userInput.equals("C")) {
                 System.out.print("What dog would you like to see information for!");
                 int result = getInt();
-                Dog dogInformation = newCompany.dogInformation(result);
+                Dog dogInformation = company.dogInformation(result);
                 if (dogInformation != null) {
                     System.out.println("Information for" + dogInformation.getDogName());
                 } else {

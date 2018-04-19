@@ -9,8 +9,8 @@ public class Company {
     }
 
     public boolean addDog(Dog dogIn, int numberOfDaysIn){
-        for(int i = 0; i < enclosures.length; i++){
-            if(enclosures[i] == null){
+        for(int i = 0; i < this.enclosures.length; i++){
+            if(this.enclosures[i].getEnclosureOccupant() == null){
                 enclosures[i].setEnclosureOccupant(dogIn);
                 enclosures[i].setEnclosureDaysBookedIn(numberOfDaysIn);
                 return true;
@@ -35,6 +35,7 @@ public class Company {
         for(int i = 0; i < enclosures.length; i++){
             if(enclosures[i] != null){
                 if(enclosures[i].getEnclosureNumber() == enclosureNumberIn){
+                    System.out.println(enclosures[i].getEnclosureOccupant());
                     return enclosures[i].getEnclosureOccupant();
                 }
             }
