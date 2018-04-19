@@ -56,8 +56,8 @@ public class Main {
                 System.out.print("Number Of Day's the " + dogsName + " Will be staying:");
                 int dogStayInDays = getInt();
                 System.out.println();
-                Dog dog = new Dog("a", "b", 1, "c", "d", "e");
-                boolean dogAdded = company.addDog(dog, 2);
+                Dog dog = new Dog(dogsName, ownersName,dogsAge, dogsGender, dogsBreed,dogsNotes);
+                boolean dogAdded = company.addDog(dog, dogStayInDays);
                 if (dogAdded) {
                     System.out.println("dog added");
                 }
@@ -75,7 +75,13 @@ public class Main {
                 int result = getInt();
                 Dog dogInformation = company.dogInformation(result);
                 if (dogInformation != null) {
-                    System.out.println("Information for" + dogInformation.getDogName());
+                    System.out.println("Information for Enclosure: " + result);
+                    System.out.println("Dog Name:\t\t" + dogInformation.getDogName());
+                    System.out.println("Owner Name:\t\t" + dogInformation.getDogOwnerName());
+                    System.out.println("Dog Age:\t\t" + dogInformation.getDogAge());
+                    System.out.println("Dog Breed:\t\t" + dogInformation.getDogBreed());
+                    System.out.println("Dog Gender:\t\t" + dogInformation.getDogGender());
+                    System.out.println("Dog Notes:\t\t" + dogInformation.getDogNotes());
                 } else {
                     System.out.println("No Dog found here!");
                 }
