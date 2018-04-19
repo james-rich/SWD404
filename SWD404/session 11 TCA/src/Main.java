@@ -10,31 +10,29 @@ public class Main {
     public static int getInt(){
         Scanner scanner = new Scanner(System.in);
         return scanner.nextInt();
+
     }
-
-
 
     public static void main(String[] args) {
 
         Company company = new Company();
 
-
         int state = 1;
         while(state == 1) {
+            System.out.println();
             System.out.println("Please select one of the following options");
 
             System.out.println("A - Add a Dog");
             System.out.println("B - Remove a Dog");
             System.out.println("C - View a Dogs Information");
             System.out.println("X - Quit");
-
             String userInput = getString();
 
             if (userInput.equals("X") || userInput.equals("xx")) {
                 state = 0;
             }
 
-            if (userInput.equals("A")) {
+            if (userInput.equals("A") || userInput.equals("a")) {
                 System.out.print("Please enter the Owners Name:");
                 String ownersName = getString();
                 System.out.println();
@@ -56,25 +54,34 @@ public class Main {
                 System.out.print("Number Of Day's the " + dogsName + " Will be staying:");
                 int dogStayInDays = getInt();
                 System.out.println();
+
                 Dog dog = new Dog(dogsName, ownersName,dogsAge, dogsGender, dogsBreed,dogsNotes);
                 boolean dogAdded = company.addDog(dog, dogStayInDays);
+
                 if (dogAdded) {
                     System.out.println("dog added");
                 }
             }
 
-            if (userInput.equals("B")) {
+            if (userInput.equals("B") || userInput.equals("b")) {
                 System.out.print("What dog would you like to evict!");
                 int result = getInt();
                 boolean dogRemoved = company.removeDog(result);
-                System.out.println("Was the dog removed = " + dogRemoved);
+                if(dogRemoved) {
+                    System.out.println("The dog has been evicted from the kennel!");
+                }else{
+                    System.out.println("We could not find a dog here!");
+                }
             }
 
-            if (userInput.equals("C")) {
+            if (userInput.equals("C") || userInput.equals("c")) {
                 System.out.print("What dog would you like to see information for!");
                 int result = getInt();
                 Dog dogInformation = company.dogInformation(result);
+
                 if (dogInformation != null) {
+                    double totalCost = company.totalPrice(result);
+                    System.out.println();
                     System.out.println("Information for Enclosure: " + result);
                     System.out.println("Dog Name:\t\t" + dogInformation.getDogName());
                     System.out.println("Owner Name:\t\t" + dogInformation.getDogOwnerName());
@@ -82,6 +89,8 @@ public class Main {
                     System.out.println("Dog Breed:\t\t" + dogInformation.getDogBreed());
                     System.out.println("Dog Gender:\t\t" + dogInformation.getDogGender());
                     System.out.println("Dog Notes:\t\t" + dogInformation.getDogNotes());
+                    System.out.println("Dogs Stay Total Cost: £" + totalCost);
+                    System.out.println();
                 } else {
                     System.out.println("No Dog found here!");
                 }

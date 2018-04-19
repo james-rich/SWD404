@@ -21,9 +21,10 @@ public class Company {
 
     public boolean removeDog(int enclosureNumberIn){
         for(int i = 0; i < enclosures.length; i++){
-            if(enclosures[i] != null){
+            if(enclosures[i].getEnclosureOccupant() != null){
                 if(enclosures[i].getEnclosureNumber() == (enclosureNumberIn)){
                     enclosures[i] = null;
+                    enclosures[i] = new Enclosure(i, 10);
                     return true;
                 }
             }
@@ -35,7 +36,6 @@ public class Company {
         for(int i = 0; i < enclosures.length; i++){
             if(enclosures[i] != null){
                 if(enclosures[i].getEnclosureNumber() == enclosureNumberIn){
-                    System.out.println(enclosures[i].getEnclosureOccupant());
                     return enclosures[i].getEnclosureOccupant();
                 }
             }
@@ -43,4 +43,14 @@ public class Company {
         return null;
     }
 
+    public double totalPrice(int enclosureNumberIn){
+        for(int i = 0; i < enclosures.length; i++) {
+            if(enclosures[i].getEnclosureNumber() == enclosureNumberIn) {
+                int numberOfDays = enclosures[i].getEnclosureDaysBookedIn();
+                double pricePerDay = enclosures[i].getEnclosurePricePerDay();
+                return numberOfDays * pricePerDay;
+            }
+        }
+        return 0.00;
+    }
 }

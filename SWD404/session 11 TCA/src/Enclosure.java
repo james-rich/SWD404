@@ -1,7 +1,7 @@
 public class Enclosure {
     private int     enclosureNumber;
     private int     enclosureDaysBookedIn;
-    private float   enclosurePricePerDay;
+    private double   enclosurePricePerDay;
     private Dog     enclosureOccupant;
 
     public Enclosure(int enclosureNumber, float enclosurePricePerDay) {
@@ -24,7 +24,7 @@ public class Enclosure {
         this.enclosureDaysBookedIn = enclosureDaysBookedIn;
     }
 
-    public float getEnclosurePricePerDay() {
+    public double getEnclosurePricePerDay() {
         return enclosurePricePerDay;
     }
 
@@ -35,4 +35,6 @@ public class Enclosure {
     public void setEnclosureOccupant(Dog enclosureOccupant) {
         this.enclosureOccupant = enclosureOccupant;
     }
+
+
 }
