@@ -38,12 +38,35 @@ public class MainScreen extends JFrame implements ActionListener {
         newCarpark = new Carpark();
         initComponents();
         layoutComponents();
-
-
-
     }
 
-    public void initComponents(){
+    private void buildCarList(){
+        cars = newCarpark.getCars();
+        String carTxtList = "";
+        for(int i = 0; i < cars.length; i++){
+            if(cars[i] != null){
+                carTxtList += cars[i].getNumberPlate() + "\n";
+                lblCaparkReg[i].setForeground(Color.RED);
+                lblCarpakColour[i].setForeground(Color.RED);
+                lblCarparkMake[i].setForeground(Color.RED);
+                lblCarparkModel[i].setForeground(Color.RED);
+                lblCaparkReg[i].setText(cars[i].getNumberPlate());
+                lblCarpakColour[i].setText(cars[i].getColour().length() > 0 ? cars[i].getColour() : "N/A");
+                lblCarparkMake[i].setText(cars[i].getMake().length() > 0 ? cars[i].getMake() : "N/A");
+                lblCarparkModel[i].setText(cars[i].getModel().length() > 0 ? cars[i].getModel() : "N/A");
+            }else{
+                lblCaparkReg[i].setText(" ");
+                lblCarpakColour[i].setText(" ");
+                lblCarparkMake[i].setForeground(Color.GREEN);
+                lblCarparkMake[i].setText("EMPTY");
+                lblCarparkModel[i].setText(" ");
+            }
+        }
+        txtCarList.setText(carTxtList);
+        txtReg.requestFocus();
+    }
+
+    private void initComponents(){
 
         lblReg      = new JLabel("Reg Number");
         lblColour   = new JLabel("Colour");
@@ -130,7 +153,7 @@ public class MainScreen extends JFrame implements ActionListener {
 
     }
 
-    public void layoutComponents(){
+    private void layoutComponents(){
         constraints.gridy       = 0;
         constraints.gridx       = 0;
         constraints.gridwidth   = 1;
@@ -228,32 +251,6 @@ public class MainScreen extends JFrame implements ActionListener {
                 this.add(pnlPane[tmpSpace], constraints);
             }
         }
-    }
-
-    public void buildCarList(){
-        cars = newCarpark.getCars();
-        String carTxtList = "";
-        for(int i = 0; i < cars.length; i++){
-            if(cars[i] != null){
-                carTxtList += cars[i].getNumberPlate() + "\n";
-                lblCaparkReg[i].setForeground(Color.RED);
-                lblCarpakColour[i].setForeground(Color.RED);
-                lblCarparkMake[i].setForeground(Color.RED);
-                lblCarparkModel[i].setForeground(Color.RED);
-                lblCaparkReg[i].setText(cars[i].getNumberPlate());
-                lblCarpakColour[i].setText(cars[i].getColour().length() > 0 ? cars[i].getColour() : "N/A");
-                lblCarparkMake[i].setText(cars[i].getMake().length() > 0 ? cars[i].getMake() : "N/A");
-                lblCarparkModel[i].setText(cars[i].getModel().length() > 0 ? cars[i].getModel() : "N/A");
-            }else{
-                lblCaparkReg[i].setText(" ");
-                lblCarpakColour[i].setText(" ");
-                lblCarparkMake[i].setForeground(Color.GREEN);
-                lblCarparkMake[i].setText("EMPTY");
-                lblCarparkModel[i].setText(" ");
-            }
-        }
-        txtCarList.setText(carTxtList);
-        txtReg.requestFocus();
     }
 
     @Override
