@@ -1,9 +1,5 @@
-import com.golden.gamedev.Game;
-import com.golden.gamedev.GameLoader;
-
+import com.golden.gamedev.*;
 import java.awt.*;
-
-import java.awt.event.*;
 
 public class Main {
 
