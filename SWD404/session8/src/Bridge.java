@@ -1,5 +1,7 @@
 public class Bridge {
     private Vehicles[] vehicles = new Vehicles[20];
+    private int maxWeight = 30000;
+
 
     public int calcTotalWeight(){
         int totalWeight = 0;
@@ -13,15 +15,17 @@ public class Bridge {
         return totalWeight;
     }
 
-    public double addVehicles(Vehicles vehiclesIn){
-        for(int i = 0; i < vehicles.length; i++) {
-            if(vehicles[i] == null) {
-                vehicles[i] = vehiclesIn;
-                return vehicles[i].calculateFees();
+    public boolean addVehicles(Vehicles vehiclesIn){
+        if(maxWeight >= calcTotalWeight() + vehiclesIn.getWeight()) {
+            for (int i = 0; i < vehicles.length; i++) {
+                if (vehicles[i] == null) {
+                    vehicles[i] = vehiclesIn;
+                    return true;
 
+                }
             }
         }
-        return 0;
+        return false;
     }
 
     public boolean removeVehicles(String regIn){

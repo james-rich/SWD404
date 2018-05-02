@@ -139,7 +139,8 @@ public class Gui extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent ev) {
         if(ev.getSource().equals(btnAdd)) {
-            double res = 0;
+            boolean res;
+            double fees;
             String reg      = txtReg.getText();
             int weight      = Integer.parseInt(txtWeight.getText());
 
@@ -148,23 +149,28 @@ public class Gui extends JFrame implements ActionListener {
 
             if(weight < 800){
                 System.out.println("Bike");
-                motorbike = new Motorbike(reg, weight);
+                Motorbike motorbike = new Motorbike(reg, weight);
                 res = bridge.addVehicles(motorbike);
+                fees = motorbike.calculateFees();
             }else if (weight < 3001){
                 System.out.println("Car");
                 Car car = new Car(reg, weight);
                 res = bridge.addVehicles(car);
+                fees = car.calculateFees();
             }else{
                 System.out.println("lorry");
                 Lorry lorry = new Lorry(reg, weight);
                 res = bridge.addVehicles(lorry);
+                fees = lorry.calculateFees();
             }
-            lblEntry.setText("Denied");
-            lblFeePrice.setText("£0");
-            if(res != 0){
+
+            if(res){
                 lblEntry.setText("Accepted");
-                lblFeePrice.setText("£" + String.valueOf(res));
+                lblFeePrice.setText("£" + String.valueOf(fees));
                 lblLoadTotal.setText(String.valueOf(bridge.calcTotalWeight()) + "kg");
+            }else{
+                lblEntry.setText("Denied");
+                lblFeePrice.setText("£0");
             }
 
         }
