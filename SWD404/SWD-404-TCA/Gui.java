@@ -142,7 +142,10 @@ public class Gui extends JFrame implements ActionListener {
             processResult = adviceCentre.removeStorm(stormName);
             if(processResult){
                 JOptionPane.showMessageDialog(null, "Storm Removed");
+                /*
+                This was used for debuggin should have been removed
                 System.out.println("Storm Removed");
+                */
             }else{
                 JOptionPane.showMessageDialog(null, "Invalid Storm Name");
             }

@@ -1,7 +1,15 @@
 public abstract class Storm {
+
+    /*
+    This should be protected not private
     private String name;
     private double windSpeed;
     private double temp;
+    */
+
+    protected String name;
+    protected double windSpeed;
+    protected double temp;
 
     public Storm(String name, double windSpeed, double temp) {
         this.name = name;
